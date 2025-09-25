@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/MRM_Logo.png">
+    <title>MRM Ingatlan - Bemutatkozás</title>
+    <style>
+        /* Alapbeállítások */
+        html {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #EFF5D2;
+            /* Világos zöldes háttér */
+            color: #333;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Rögzített fejléc */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #556B2F;
+            /* Sötét zöldes-fekete */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            height: 60px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #EFF5D2;
+            /* Világos zöldes szöveg */
+            content: "MRM";
+        }
+
+        .contact-info {
+            text-align: right;
+            color: #C6D870;
+            margin-right: 30px;
+            /* Közepes zöldes árnyalat */
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+        }
+
+        /* Tartalom */
+        main {
+            flex: 1 0 auto;
+            padding-top: 80px;
+        }
+
+        /* Navigációs bár */
+        nav {
+            background-color: #8FA31E;
+            /* Zöldes árnyalat */
+            color: #EFF5D2;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            position: relative;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #EFF5D2;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+            transition: border 0.3s, background-color 0.3s;
+        }
+
+        nav ul li:hover>a {
+            background-color: #556B2F;
+            /* Sötét zöldes-fekete hover */
+            border: 1px solid #C6D870;
+            /* Közepes zöld perem */
+        }
+
+        /* Dropdown menük */
+        nav ul li ul {
+            display: none;
+            position: absolute;
+            background-color: #8FA31E;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        nav ul li:hover>ul {
+            display: block;
+        }
+
+        nav ul li ul li {
+            margin: 0;
+        }
+
+        nav ul li ul li a {
+            padding: 10px 15px;
+        }
+
+        nav ul li ul li a:hover {
+            border: 1px solid #C6D870;
+            background-color: #556B2F;
+        }
+
+        /* Nem kattintható menüpont */
+        .no-link {
+            color: #EFF5D2;
+            padding: 10px;
+            display: block;
+            cursor: default;
+        }
+
+        .no-link:hover {
+            background-color: #556B2F;
+            border: 1px solid #C6D870;
+        }
+
+        footer {
+            background-color: #556B2F;
+            color: #EFF5D2;
+            text-align: center;
+            padding: 20px;
+            flex-shrink: 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #556B2F;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #8FA31E;
+            border: 1px solid #556B2F;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            border: 1px solid #556B2F;
+            background: #A4B939;
+        }
+
+        table, th, td, tr 
+      {
+          border: 1px solid black;
+      }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="../img/MRM_Logo.png" alt="MRM Logo" style="height: 100px;">
+        </div>
+        <div class="contact-info">
+            <p>Email: info@mrmingatlan.hu</p>
+            <p>Telefon: +36 123 4567</p>
+        </div>
+    </header>
+
+    <main>
+        <nav>
+            <ul>
+                <li><a href="./mrm_fomenu.html">Főoldal</a></li>
+                <li><a href="./mrm_ingatlanok.html">Ingatlanok</a></li>
+                <li>
+                    <a href="#">Állami támogatások</a>
+                    <ul>
+                        <li><a href="./mrm_ott.html">Otthonfelújítási támogatás tájékoztató</a></li>
+                        <li><a href="./mrm_csok.html">Mindent a CSOK-ról</a></li>
+                    </ul>
+                </li>
+                <li><a href="./mrm_bemutat.html">Bemutatkozás</a></li>
+                <li>
+                    <a href="#">Szolgáltatásaink</a>
+                    <ul>
+                        <li><a href="./mrm_ingatlan-kozvetites.html">Ingatlan közvetítés</a></li>
+                        <li><a href="./mrm_ertekbecsles.html">Értékbecslés</a></li>
+                        <li><a href="./mrm_alaprajz-keszites.html">Alaprajz készítés</a></li>
+                        <li><a href="./mrm_energetikai-tanusitvany-keszites.html">Energetikai tanúsítvány készítés</a></li>
+                        <li><a href="./mrm_ikjtu.html">Ingatlannal kapcsolatos jogi tanácsadás és ügyintézés</a></li>
+                        <li><a href="./mrm_hoterkepes-vizsgalat.html">Hőtérképes vizsgálat</a></li>
+                    </ul>
+                </li>
+                <li><a href="./mrm_ertekesitok.html">Értékesítők</a></li>
+                <li><a href="./mrm_adoilletek.html">ADÓ, ILLETÉK</a></li>
+                <li><a href="./mrm_kapcsolat.html">Kapcsolat</a></li>
+            </ul>
+        </nav>
+        <h1 style="text-align: center;">ADÓ, ILLETÉK</h1>
+        <h3>Ingatlan eladással kapcsolatos adózás. <a href="">Bővebben itt</a></h3>
+        <p>Az ingatlan 2017. évi átruházása esetén a számított összegből (a bevétel és a költség különbözete) a szerzés időpontjától függően a következők szerint kell az idő múlására tekintettel a jövedelmet meghatározni:</p>
+        
+        <table>
+            <tr>
+                <th> A szerzés éve</th>
+                <th> Jövedelem 
+                    a számított összeg</th>
+            </tr>
+       
+            <tr>
+                <td>2019. 0. év</td>
+                <td>100%-a</td>
+            </tr>
+
+            <tr>
+                <td>2018. 1. év</td>
+                <td>100%-a</td>
+            </tr>
+
+            <tr>
+                <td>2017. 2. év</td>
+                <td>90%-a</td>
+            </tr>
+
+            <tr>
+                <td>2016. 3. év</td>
+                <td>60%-a</td>
+            </tr>
+
+            <tr>
+                <td>2015. 4. év</td>
+                <td>30%-a</td>
+            </tr>
+
+            <tr>
+                <td>2014. 5. év</td>
+                <td>0%-a</td>
+            </tr>
+    </table>
+      
+         
+        <h3 >Ingatlan vásárlással kapcsolatos illeték. <a href="">Bővebben itt</a></h3>
+        <p>Lakásvásárlás, vagy csere alkalmával 4 % az illeték mértéke. Ha vásárlásról van szó, akkor a terhekkel csökkentett érték után kerül megfizetésre ez. Csere esetében pedig a két ingatlan értékének különbözete az illeték alapja. Természetesen ez esetben is léteznek kedvezmények, mentességek.</p>
+        
+        <p>Nem kell fizetni az úgynevezett negatív illetékalap esetében. Ez akkor fordulhat elő, ha a vásárló másik lakástulajdonát egy éven belül eladja, és a megszerzett lakás forgalmi értéke kisebb, mint az eladott ingatlané.</p>
+         
+        
+        <h3>Lakásvásárlási illetékkedvezmény:</h3>
+        
+        <p>Csak a leggyakoribb eseteket figyelembe véve az illetéktörvény szerint illetékkedvezmény, illetve illetékmentesség az alábbi esetekben van többek között:</p>
+        <ul>
+            <li>35 év alatti fiatal első lakástulajdonának megszerzése 15 millió forintos forgalmi érték alatt 50 százalékos kedvezményre jogosít. Ez igaz a tulajdoni hányad szerzésre is, persze arányosan.</li>
+        
+            <li>A <a>szocpol</a> összegét le kell számítani az ingatlan forgalmi értékéből, ha az illetéket akarjuk kiszámítani.</li>
+        
+            <li>mentes továbbá az illeték alól a termőföldnek a földműves általi, ellenérték fejében történő megszerzése, ha öt évig nem adja el.</li>
+        
+            <li>házastársi vagyonközösség megszüntetése esetén sem kell illetéket fizetni.</li>
+        </ul>
+
+        <h3>Ingatlan bérbeadásával kapcsolatos adózás.<a href="">Bővebben itt</a></h3>
+        <p>Az egészségügyi hozzájárulásról szóló 1998. évi LXVI. törvény (a továbbiakban: Eho tv.) módosítása szerint 2018. január 1-jétől a belföldi természetes személynek nem kell 14 százalék mértékű egészségügyi hozzájárulást fizetnie az ingatlan bérbeadásból származó 1 millió forintot meghaladó jövedelmekkel összefüggésben.</p>
+        
+        <p>Az új rendelkezés először a 2018. év január hónapban megszerzett ingatlan bérbeadásból származó jövedelmekre alkalmazható.</p>
+        
+        <p>Az ingatlan bérbeadásból származó jövedelem az összevont adóalapba tartozó személyi jövedelemadó-előleg alapot képező olyan jövedelem, amely után járulék,- és szociális hozzájárulási adófizetési kötelezettség nem merül fel.</p>
+        
+        <p>Az Eho tv. 5.§ (2) bekezdése alapján az említett jövedelemmel összefüggésben nem merül fel az általános – 19,5 százalék –mértékű kötelezettség teljesítése sem.</p>
+        
+        <p><b>Fontos!</b> A 2017. évben megszerzett, nem kifizetőtől származó ingatlan bérbeadásból származó jövedelemmel összefüggésben az adóhatóság által elkészített bevallási tervezetet az érintetteknek szükséges kiegészítenie.</p>
+        
+        <h3><b>A vagyoni értékű jogok értékének megállapítása <a href="">Bővebben itt</a></b></h3>
+        <p>72. § (1) *  A vagyoni értékű jogok – kivéve az építményi jogot – egy évi értékéül az ezzel terhelt dolog – terhekkel nem csökkentett – forgalmi értékének egyhuszad részét kell tekinteni.</p>
+        
+        <p>(2) *  A meghatározott időre szóló vagyoni értékű jog – kivéve az építményi jogot – értéke az egyévi érték és a kikötött évek szorzata. A jog így számított értéke azonban nem haladhatja meg az egyévi érték 20-szorosát, illetve természetes személy javára kikötött haszonélvezet, használat joga esetén az egyévi értéknek a (4) bekezdés a) pontjában meghatározott életkor szerinti többszörösét.</p>
+        
+        <p>(3) *  A bizonytalan időre terjedő vagyoni értékű jog – kivéve az építményi jogot – esetében a jog értéke – a (4) bekezdésben foglaltak kivételével – az egy évi érték ötszöröse.</p>
+        
+        <p>(4) Ha a vagyoni értékű jog – kivéve az építményi jogot – valamely személy életének, házasságának vagy özvegységének idejére terjed, annak értékét az illető személy életkorához képest a következő módon kell megállapítani: * </p>
+        
+        <p><b>a) *  ha a vagyoni értékű jog jogosultja:</b></p>
+        
+        <p><b>25 évesnél fiatalabb, az egyévi érték 10-szerese,</b></p>
+        
+        <p><b>25–50 éves, az egyévi érték 8-szorosa,</b></p>
+        
+        <p><b>51–65 éves, az egyévi érték 6-szorosa,</b></p>
+        
+        <p><b>65 évnél idősebb, az egyévi érték 4-szerese;</b></p>
+        
+        <p><b>pl: 20 M Ft értékű ingatlan 1/2 tulajdoni hányadán van egy 55 éves személynek(6 x-os szorzó) holtigtartó haszonélvezet akkor, a 20 000 000 /2=10 000 000,- Ft a tulajdoni hányad értéke, így a (10 000 000 / 20)x6=3 000 000, tehát a haszonélvezet értéke 3 M Ft</b></p>
+        
+        <p>b) ha a vagyoni értékű jog tartama mind a jogosult, mind a kötelezett élete, házassága vagy özvegysége idejétől függ, az a) pontban megállapított szorzók alkalmazásánál a két személy közül az idősebbnek az életkora az irányadó;</p>
+        
+        <p>c) *  ha a vagyoni értékű jog tartama több egyidejűleg jogosult személy élettartamától függ, mégpedig oly módon, hogy a jogosultság a legelőször elhalt személy halálával megszűnik, az értékelésnél a legidősebb személy életkora az irányadó; ha pedig a jogosultság a legutóbb elhalt személy haláláig tart, a kiszámítás a legfiatalabb személy életkora szerint történik. Az így kapott értéket, mint illetékalapot az egyes jogosultak között olyan arányban kell megosztani, mint amilyen arányt az életkoruk szerint számított vagyoni értékű jog értéke ezek együttes értékében képvisel;</p>
+        
+        <p>d) ha a vagyoni értékű jog tartama a házasság idejére terjed, a kiszámításnál az idősebb házastárs életkora az irányadó.</p>
+        
+        <p>(5) *  Az időleges üdülőhasználati jog és a szállás időben megosztott használati jogának értéke: e jogok egy évi értékének [72. § (1) bekezdés] annyiszor háromszázhatvanötöd része, ahány nap megszerzéséről szól a szerződés. Egyebekben a 72. § (2)–(3) bekezdésében foglaltak az irányadóak.</p>
+        
+        <p>(6) *  Az építményi jog értéke megegyezik e jog forgalmi értékével.</p>
+
+
+    </main>
+
+    <footer>
+        <p>Mi vagyunk az MRM Ingatlan. Segítünk eladni, venni, értékelni és tanácsot adni ingatlanügyekben.</p>
+    </footer>
+</body>
+
+</html>

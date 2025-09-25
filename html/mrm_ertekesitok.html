@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MRM Ingatlan - Munkatársaink</title>
+    <style>
+        /* Alap */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #EFF5D2;
+            color: #333;
+        }
+
+        /* Fejléc - változatlan */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #556B2F;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            height: 60px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #EFF5D2;
+        }
+
+        .contact-info {
+            text-align: right;
+            color: #C6D870;
+        }
+
+        .contact-info p {
+            margin: 2px 0;
+        }
+
+        /* Navigáció - változatlan */
+        nav {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            background-color: #8FA31E;
+            color: #EFF5D2;
+            padding: 10px 0;
+            z-index: 999;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            position: relative;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: #EFF5D2;
+            text-decoration: none;
+            padding: 8px 12px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li:hover>a {
+            background-color: #556B2F;
+            border-radius: 4px;
+        }
+
+        nav ul li ul {
+            display: none;
+            position: absolute;
+            background-color: #8FA31E;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        nav ul li:hover>ul {
+            display: block;
+        }
+
+        nav ul li ul li a:hover {
+            background-color: #556B2F;
+        }
+
+        /* Main layout - egyszerűsítve, szűrő nélkül */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            margin-top: 120px;
+            /* header (60px) + nav (~60px) helyet hagyunk */
+        }
+
+        /* Munkatársak grid - finomhangolt megjelenés, görgethető tartalom */
+        .team-grid-container {
+            flex: 1;
+        }
+
+        .team-grid-container h1 {
+            color: #556B2F;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            /* nagyobb kártyák az olvashatóság érdekében */
+            gap: 25px;
+        }
+
+        .team-card {
+            background-color: #fff;
+            border: 1px solid #C6D870;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding-bottom: 20px;
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-card img {
+            width: 100%;
+            height: 200px;
+            /* nagyobb kép a szebb megjelenésért */
+            object-fit: cover;
+            border-bottom: 2px solid #8FA31E;
+        }
+
+        .team-card h3 {
+            margin: 15px 0 10px;
+            color: #556B2F;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        /* Új: görgethető szövegdoboz a hosszú bemutatkozásokhoz */
+        .team-card .description {
+            max-height: 200px;
+            /* fix magasság a konzisztens kártyákhoz */
+            overflow-y: auto;
+            /* görgethető, ha a szöveg hosszú */
+            padding: 0 15px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+            text-align: left;
+            margin: 0 10px 15px;
+        }
+
+        /* Footer - változatlan */
+        footer {
+            background-color: #556B2F;
+            color: #EFF5D2;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        /* Új: animáció a kártyák betöltéséhez */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .team-card {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        /* Reszponzív design finomhangolás */
+        @media (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .team-card img {
+                height: 180px;
+            }
+
+            .team-card h3 {
+                font-size: 20px;
+            }
+
+            .team-card .description {
+                font-size: 13px;
+                max-height: 150px;
+            }
+        }
+
+        ::-webkit-scrollbar {
+        width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+        background: #556B2F;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+        background: #8FA31E; 
+        border: 1px solid #556B2F; 
+        border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+        border: 1px solid #556B2F;
+        background: #A4B939; 
+        }
+
+        .description::-webkit-scrollbar-thumb{
+            border-radius: 25px;
+        }
+
+        .description::-webkit-scrollbar-track{
+            border-radius: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Fejléc - változatlan -->
+    <header>
+        <div class="logo">
+            <img src="../img/MRM_Logo.png" alt="MRM Logo" style="height: 100px;">
+        </div>
+        <div class="contact-info">
+            <p>Email: info@mrmingatlan.hu</p>
+            <p>Telefon: +36 123 4567</p>
+        </div>
+    </header>
+
+    <!-- Navigáció - változatlan -->
+        <nav>
+            <ul>
+                <li><a href="./mrm_fomenu.html">Főoldal</a></li>
+                <li><a href="./mrm_ingatlanok.html">Ingatlanok</a></li>
+                <li>
+                    <a href="#">Állami támogatások</a>
+                    <ul>
+                        <li><a href="./mrm_ott.html">Otthonfelújítási támogatás tájékoztató</a></li>
+                        <li><a href="./mrm_csok.html">Mindent a CSOK-ról</a></li>
+                    </ul>
+                </li>
+                <li><a href="./mrm_bemutat.html">Bemutatkozás</a></li>
+                <li>
+                    <a href="#">Szolgáltatásaink</a>
+                    <ul>
+                        <li><a href="./mrm_ingatlan-kozvetites.html">Ingatlan közvetítés</a></li>
+                        <li><a href="./mrm_ertekbecsles.html">Értékbecslés</a></li>
+                        <li><a href="./mrm_alaprajz-keszites.html">Alaprajz készítés</a></li>
+                        <li><a href="./mrm_energetikai-tanusitvany-keszites.html">Energetikai tanúsítvány készítés</a></li>
+                        <li><a href="./mrm_ikjtu.html">Ingatlannal kapcsolatos jogi tanácsadás és ügyintézés</a></li>
+                        <li><a href="./mrm_hoterkepes-vizsgalat.html">Hőtérképes vizsgálat</a></li>
+                    </ul>
+                </li>
+                <li><a href="./mrm_ertekesitok.html">Értékesítők</a></li>
+                <li><a href="./mrm_adoilletek.html">ADÓ, ILLETÉK</a></li>
+                <li><a href="./mrm_kapcsolat.html">Kapcsolat</a></li>
+            </ul>
+        </nav>
+
+    <!-- Fő tartalom - szűrő eltávolítva, munkatársak kártyái szépítve, görgethető szövegekkel -->
+    <main>
+        <section class="team-grid-container">
+            <h1>Ingatlanközvetítőink</h1>
+            <div class="team-grid">
+                <!-- Munkatárs kártya - görgethető szövegdoboz hozzáadva, kép és szöveg formázva -->
+                <div class="team-card">
+                    <img
+                        src="https://www.shutterstock.com/image-photo/goodlooking-middleaged-businessman-arms-crossed-260nw-1929520217.jpg">
+                    <h3>Kovács László</h3>
+                    <div class="description">
+                        Kovács László vagyok az MRM ingatlaniroda csapatának tagja. Munkám során arra törekszem, hogy az
+                        ügyfeleimmel együttműködve, az ő érdekeiket képviselve megvalósítsuk ingatlancéljaikat. Teszem
+                        ezt egy profi, nagy tapasztalattal rendelkező csapat tagjaként, ahol a folyton változó jogi,
+                        pénzügyi környezet nyomon követésével, naprakész tudással megkönnyítjük a számunkra bizalmat
+                        szavazó partnereink ingatlanügyleteit. Mottóm: Elégedett ügyfél a legjobb cégér! Hívjon
+                        bizalommal!
+                    </div>
+                </div>
+                <!-- Munkatárs kártya - azonos struktúra minden kártyánál -->
+                <div class="team-card">
+                    <img
+                        src="https://t3.ftcdn.net/jpg/04/96/07/82/360_F_496078236_AKomo4gH6ykR43XmsGeAF6pI8CQAlSGa.jpg">
+                    <h3>Szűcs Boglárka</h3>
+                    <div class="description">
+                        Szűcs Boglárka vagyok, ingatlanközvetítő. Célom, hogy megtaláljam Önnek a legjobb megoldást,
+                        legyen szó otthonról vagy befektetésről, eladásról vagy vételről. Hiszem, hogy az
+                        ingatlanvásárlás és -eladás bizalmat és odafigyelést igényel, ezért ügyfeleim igényeire
+                        fókuszálva segítek a legideálisabb döntés meghozatalában. Keressen bizalommal, és találjuk meg
+                        együtt az Ön számára tökéletes ingatlant!
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img
+                        src="https://img.freepik.com/premium-photo/business-man-suit_114963-13060.jpg?semt=ais_hybrid&w=740&q=80">
+                    <h3>Tóth Kristóf</h3>
+                    <div class="description">
+                        Kedves érdeklődő! Tevékenységi körömbe tartozik: ingatlanok eladása és bérbeadása, értékbecslés,
+                        hitelügyintézés, biztosítások megkötése. Amennyiben eladni szeretne, segítek, hogy ingatlana
+                        gyorsan vevőre találjon. Támogatást nyújtok az ügylet minden egyes lépésénél. Ha vásárolni
+                        szeretne, segítséget nyújtok a megfelelő otthon megtalálásában, hogy a vásárlás öröm, ne teher
+                        legyen az Ön számára. Célom az, hogy az adás-vétel minden résztvevő számára elégedetten
+                        záruljon. Stratégiai befektetői kapcsolataim révén extra gyors ingatlan eladásban is segítségére
+                        vagyok. Értékesítési tapasztalatom nem csak lakóingatlan, hanem ipari, mezőgazdasági ingatlanok,
+                        üzlethelyiségek, telkek, nyaralók és fejlesztési területekre is kiterjed.
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img
+                        src="https://t3.ftcdn.net/jpg/02/31/85/36/360_F_231853695_nff4xrakFQNmMm3Z2ZOlSl4tdCuiC0yp.jpg">
+                    <h3>Nagy Szilvia</h3>
+                    <div class="description">
+                        Tisztelt VEVŐK! Tisztelt ELADÓK! Napjaink pörgős, száguldó világában a három legfontosabb érték
+                        az ingatlant VÁSÁRLÓK és ÉRTÉKESÍTŐK számára, az IDŐ a BIZTONSÁG és a KÖLTSÉGHATÉKONYSÁG.
+                        Ingatlanszakértőként, ebben leszek az Ön segítségére. Manapság nem az a kérdés, hogy lehet-e
+                        INGATLANT VÁSÁROLNI vagy ÉRTÉKESÍTENI egyedül, hanem hogy szakértő nélkül megéri-e? Amire
+                        garanciát vállalok: Szakmai tudás és tapasztalat. Ingatlanközvetítés, (adás-vétel, bérlet,
+                        csere), a legkorszerűbb marketing eszközökkel. Folyamatos kapcsolattartás, gondos vevőszűrés.
+                        Pénzügyi szaktanácsadás, megbízható ügyvédi háttér. Országos ingatlan kínálat és kereslet. Felek
+                        közötti tárgyalások lebonyolítása. Közösen megtaláljuk az OPTIMÁLIS MEGOLDÁSt! A siker a
+                        részletekben rejlik. Munkám során a Biztonság, Hozam, Likviditás és Időzítés áll a fókuszban.
+                        Ügyfeleim mondták rólam: "Egy hihetetlen energikus és kitartó személyt ismerhettem meg
+                        személyedben. Maximális megbízhatóság... motiváltság..!" Sz. László "Példakép vagy!" B.
+                        Krisztina "Ügyes és Kitartó vagy!" S. Veronika Legyen Ön is elégedett ügyfelem!
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img
+                        src="https://media.istockphoto.com/id/1364917563/photo/businessman-smiling-with-arms-crossed-on-white-background.jpg?s=612x612&w=0&k=20&c=NtM9Wbs1DBiGaiowsxJY6wNCnLf0POa65rYEwnZymrM=">
+                    <h3>Hegedűs Csongor</h3>
+                    <div class="description">
+                        Tisztelt vevők és eladók! Hegedűs Csongor vagyok, 20 éve az értékesítésben dolgozok,
+                        munkatársaimmal legfontosabb törekvésem, hogy kiemelt minőségben szolgáljuk ki ügyfeleinket.
+                        Irodánk mottója: "tisztesség, becsület". Minden ügyfelünk egyaránt fontos számunkra, éppen ezért
+                        ezen elvek alapján szolgáljuk ki a megbízóinkat. Teljes körű szolgáltatást biztosítunk, amely
+                        magába foglalja a tanácsadást, értékbecslést, vagyonértékelést, hitelügyintézést, biztosítást,
+                        az adásvétellel kapcsolatos jogi képviseletet. Keressen bizalommal!
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img
+                        src="https://www.shutterstock.com/image-photo/cheerful-young-businesswoman-black-suit-600nw-2427929857.jpg">
+                    <h3>Somody Zsófia</h3>
+                    <div class="description">
+                        Tisztelt Tulajdonos! Ha eladná ingatlanát, ne habozzon, forduljon hozzám bizalommal, és időben
+                        értékesítem tulajdonát a lehető legjobb piaci áron! Álmai otthonát keresi? Hívjon és segítek
+                        megtalálni! Kínálatunkban vidéki és városi otthonok, hétvégi házak, építési telkek is
+                        megtalálhatóak. Várom megtisztelő hívását!
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img
+                        src="https://media.istockphoto.com/id/2151534433/photo/portrait-successful-mature-adult-professional-business-man-in-formal-suit-holding-device.jpg?s=612x612&w=0&k=20&c=fRi9acxg4-FK4JQ2NFVly38UU2J8QbTcxxKGtNla71U=">
+                    <h3>Kormos Péter</h3>
+                    <div class="description">
+                        Kedves Ismerőseim! Ingatlanközvetítéssel foglalkozok Miskolcon az Immo1 Ingatlanközvetítő
+                        Franchise Hálózat tagjaként. Amennyiben ingatlant vásárolnál vagy az értékesítés során
+                        segítségre van szükséged, fordulj hozzám bizalommal! Munkám során olyan kiszolgálásban
+                        részesítem kedves ügyfeleimet, amilyennel én is meg lennék elégedve. Irodánk Miskolcon a Papszer
+                        utca 44. sz. alatt található. Tevékenységeink: ✅ ingatlan adásvétel ✅ albérlet kiadás ✅
+                        értékbecslés, értékmegállapítás ✅ ingatlanvásárlás előtt igényfelmérés ✅ hitelügyintézés ✅
+                        biztosítási tanácsadás ✅ energetikai tanúsítvány Az ingatlannal kapcsolatos ügyek általában
+                        komplex megoldást igényelnek. 🏡 Amennyiben segítségedre lehetek ingatlanos elképzeléseid
+                        megvalósításában, keress bizalommal elérhetőségeimen! 🔑 Találjuk meg együtt az optimális
+                        megoldást!
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img
+                        src="https://media.istockphoto.com/id/1317804584/photo/one-businesswoman-studio-portrait-looking-at-the-camera.jpg?s=612x612&w=0&k=20&c=Tx3nGQfxaI781gi97Siw7DIEBbKg1oBxl8n0JEwMQ6s=">
+                    <h3>Fazekas Krisztina</h3>
+                    <div class="description">
+                        Tisztelt érdeklődő, leendő Ügyfeleim! Fazkas Krisztina vagyok, az Immo1 Franchise cégcsoport
+                        ingatlanközvetítője. Büszkeséggel tölt el, hogy egy ilyen nagyszerű csapat tagja lehetek!
+                        Ingatlan eladásunk minőségi szemléletet képvisel. Ügyfeleink elégedettségének alappillére, a
+                        saját értékeink tiszteletben tartása, a munka iránti alázat magas szakmai felkészültséggel!
+                        Hiszem és tudom, hogy kellő odafigyeléssel, segítséggel, együttműködve rövid határidőn belül,
+                        eredményes munkát tudunk elérni! Váltsuk valóra otthonával kapcsolatos álmait! Kérem keressen
+                        bizalommal!
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img
+                        src="https://cdn.shopify.com/s/files/1/0297/5318/0220/files/Navy-Suit_480x480.jpg?v=1675412190">
+                    <h3>Horváth Csaba</h3>
+                    <div class="description">
+                        Mérnöki szemmel, emberi szívvel az ingatlanpiacon! Miskolcon születtem és itt is élek, így
+                        nemcsak az ingatlanpiacot, hanem a várost és környékét is jól ismerem. Kétgyermekes édesapaként
+                        pontosan tudom, hogy milyen nagy döntés egy otthon megvásárlása, vagy épp eladása. Épületgépész
+                        mérnöki hátteremnek köszönhetően szakértő műszaki szemmel is látom az ingatlanok állapotát, ami
+                        plusz biztonságot ad ügyfeleimnek. Az ingatlanpiac számomra nemcsak számok és négyzetméterek
+                        összessége, hanem emberi sorsok, családi történetek és megvalósult álmok találkozása.
+                        Csapatjátékosként hiszem, hogy a siker kulcsa a közös munka és a bizalom. Célom, hogy minden
+                        ügyfelem számára a lehető legjobb megoldást találjuk meg – akár otthonkeresésről, akár
+                        értékesítésről, akár befektetésről van szó. Ha Ön is egy megbízható, emberközpontú és elhivatott
+                        ingatlanközvetítőt keres, örömmel állok rendelkezésére!
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer - változatlan -->
+    <footer>
+        <p>Mi vagyunk az MRM Ingatlan. Segítünk eladni, venni, értékelni és tanácsot adni ingatlanügyekben.</p>
+    </footer>
+</body>
+
+</html>

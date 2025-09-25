@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../img/MRM_Logo.png">
+    <title>MRM Ingatlan - Ingatlanok</title>
+    <style>
+        /* Alap */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #EFF5D2;
+            color: #333;
+        }
+
+        /* Fejléc */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #556B2F;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            height: 60px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #EFF5D2;
+        }
+
+        .contact-info {
+            text-align: right;
+            color: #C6D870;
+            margin-right: 30px;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+        }
+
+        /* Navigáció */
+        nav {
+            position: fixed;
+            /* legyen fix */
+            top: 80px;
+            /* közvetlenül a header alá kerül */
+            left: 0;
+            width: 100%;
+            background-color: #8FA31E;
+            color: #EFF5D2;
+            padding: 10px 0;
+            z-index: 999;
+            max-width: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            position: relative;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: #EFF5D2;
+            text-decoration: none;
+            padding: 8px 12px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li:hover>a {
+            background-color: #556B2F;
+            border: 1px solid #C6D870;
+            border-radius: 5px;
+        }
+
+        nav ul li ul {
+            display: none;
+            position: absolute;
+            background-color: #8FA31E;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        nav ul li:hover>ul {
+            display: block;
+        }
+
+        nav ul li ul li a:hover {
+            background-color: #556B2F;
+        }
+
+        /* Main layout */
+        main {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            margin-top: 120px;
+            min-height: calc(100vh - 120px);
+            /* header (60px) + nav (~60px) helyet hagyunk */
+        }
+
+        /* Sidebar */
+        .filter-sidebar {
+            width: 260px;
+            background-color: #C6D870;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+        }
+
+        .filter-sidebar h2 {
+            color: #556B2F;
+            margin-bottom: 15px;
+        }
+
+        .filter-group {
+            margin-bottom: 15px;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .filter-group input {
+            width: 93.5%;
+            padding: 8px;
+            border: 1px solid #8FA31E;
+            border-radius: 4px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+        }
+
+        .filter-group select{
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #8FA31E;
+            border-radius: 4px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+        }
+
+        .filter-group button {
+            background-color: #556B2F;
+            color: #EFF5D2;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .filter-group button:hover {
+            background-color: #8FA31E;
+        }
+
+        /* Property grid */
+        .property-grid-container {
+            flex: 1;
+        }
+
+        .property-grid-container h1 {
+            color: #556B2F;
+            margin-bottom: 20px;
+        }
+
+        .property-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .property-card {
+            background-color: #fff;
+            border: 1px solid #C6D870;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .property-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .property-card h3 {
+            margin: 12px;
+            color: #556B2F;
+            font-size: 18px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            animation: modal 1s;
+        }
+
+        .modal:target {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: #EFF5D2;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #556B2F;
+            width: 90%;
+            max-width: 650px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 12px;
+            right: 20px;
+            color: #556B2F;
+            font-size: 28px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .close:hover {
+            color: #8FA31E;
+        }
+
+        .modal-content img {
+            width: 100%;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            color: #556B2F;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #556B2F;
+            color: #EFF5D2;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        ::-webkit-scrollbar {
+        width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+        background: #556B2F;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+        background: #8FA31E; 
+        border: 1px solid #556B2F; 
+        border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+        border: 1px solid #556B2F;
+        background: #A4B939; 
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="../img/MRM_Logo.png" alt="MRM Logo" style="height: 100px;">
+        </div>
+        <div class="contact-info">
+            <p>Email: info@mrmingatlan.hu</p>
+            <p>Telefon: +36 123 4567</p>
+        </div>
+    </header>
+
+        <nav>
+            <ul>
+                <li><a href="./mrm_fomenu.html">Főoldal</a></li>
+                <li><a href="./mrm_ingatlanok.html">Ingatlanok</a></li>
+                <li>
+                    <a href="#">Állami támogatások</a>
+                    <ul>
+                        <li><a href="./mrm_ott.html">Otthonfelújítási támogatás tájékoztató</a></li>
+                        <li><a href="./mrm_csok.html">Mindent a CSOK-ról</a></li>
+                    </ul>
+                </li>
+                <li><a href="./mrm_bemutat.html">Bemutatkozás</a></li>
+                <li>
+                    <a href="#">Szolgáltatásaink</a>
+                    <ul>
+                        <li><a href="./mrm_ingatlan-kozvetites.html">Ingatlan közvetítés</a></li>
+                        <li><a href="./mrm_ertekbecsles.html">Értékbecslés</a></li>
+                        <li><a href="./mrm_alaprajz-keszites.html">Alaprajz készítés</a></li>
+                        <li><a href="./mrm_energetikai-tanusitvany-keszites.html">Energetikai tanúsítvány készítés</a></li>
+                        <li><a href="./mrm_ikjtu.html">Ingatlannal kapcsolatos jogi tanácsadás és ügyintézés</a></li>
+                        <li><a href="./mrm_hoterkepes-vizsgalat.html">Hőtérképes vizsgálat</a></li>
+                    </ul>
+                </li>
+                <li><a href="./mrm_ertekesitok.html">Értékesítők</a></li>
+                <li><a href="./mrm_adoilletek.html">ADÓ, ILLETÉK</a></li>
+                <li><a href="./mrm_kapcsolat.html">Kapcsolat</a></li>
+            </ul>
+        </nav>
+
+    <main>
+        <aside class="filter-sidebar">
+            <h2>Ingatlan Szűrő</h2>
+            <form>
+                <div class="filter-group">
+                    <label for="location">Helyszín:</label>
+                    <input type="text" id="location" name="location">
+                </div>
+                <div class="filter-group">
+                    <label for="price-min">Ár minimum:<span id="minPriceTEXT">?</span></label>
+                    <input type="range" id="price-min" name="price-min" min="0" max="10" step="100000" oninput="MinP()">
+                </div>
+                <div class="filter-group">
+                    <label for="price-max">Ár maximum:<span id="maxPriceTEXT">?</span></label>
+                    <input type="range" id="price-max" name="price-max" min="0" max="10" step="100000" oninput="MaxP()">
+                </div>
+                <div class="filter-group">
+                    <label for="localization">Elhelyezkedés:</label>
+                    <select id="localization" name="localization">
+                        <option>Mindegy</option>
+                        <option>Centrum</option>
+                        <option>Belváros</option>
+                        <option>Külváros</option>
+                        <option>Kertváros</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="type">Típus:</label>
+                    <select id="type" name="type">
+                        <option>Mindegy</option>
+                        <option>Lakás</option>
+                        <option>Ház</option>
+                        <option>Telek</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="rooms">Szobák:</label>
+                    <select id="rooms" name="rooms">
+                        <option>Mindegy</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4+</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <button type="submit">Szűrés</button>
+                </div>
+                <div class="filter-group">
+                    <button type="button" id="szuroTorles">Szűrők törlése</button>
+                </div>
+            </form>
+        </aside>
+
+        <section class="property-grid-container">
+            <h1>Eladó Ingatlanok</h1>
+            <div class="property-grid">
+                <!-- 15 Ingatlan kártya -->
+                <a href="#modal1" class="property-card" data-Hely="Budapest" data-Ar="45000000" data-Elhely="Belváros" data-Tipus="Lakás" data-Szobak="3"><img src="https://via.placeholder.com/300x180?text=Ingatlan+1">
+                    <h3>Budapest, Belváros</h3>
+                </a>
+                <a href="#modal2" class="property-card" data-Hely="Szeged" data-Ar="22000000" data-Elhely="Kertváros" data-Tipus="" data-Szobak="5"><img src="https://via.placeholder.com/300x180?text=Ingatlan+2">
+                    <h3>Szeged, Kertváros</h3>
+                </a>
+                <a href="#modal3" class="property-card" data-Hely="Debrecen" data-Ar="10000000" data-Elhely="Centrum" data-Tipus="" data-Szobak=""><img src="https://via.placeholder.com/300x180?text=Ingatlan+3">
+                    <h3>Debrecen, Centrum</h3>
+                </a>
+                <a href="#modal4" class="property-card" data-Hely="Pécs" data-Ar="75500000" data-Elhely="Belváros" data-Tipus="" data-Szobak=""><img src="https://via.placeholder.com/300x180?text=Ingatlan+4">
+                    <h3>Pécs, Belváros</h3>
+                </a>
+                <a href="#modal5" class="property-card" data-Hely="Győr" data-Ar="" data-Elhely="Külváros" data-Tipus="" data-Szobak=""><img src="https://via.placeholder.com/300x180?text=Ingatlan+5">
+                    <h3>Győr, Külváros</h3>
+                </a>
+                <a href="#modal6" class="property-card" data-Hely="Miskolc" data-Ar="" data-Elhely="Centrum" data-Tipus="" data-Szobak=""><img src="https://via.placeholder.com/300x180?text=Ingatlan+6">
+                    <h3>Miskolc, Centrum</h3>
+                </a>
+                <a href="#modal7" class="property-card" data-Hely="Kecskemét" data-Ar="" data-Elhely="Belváros" data-Tipus="" data-Szobak=""><img src="https://via.placeholder.com/300x180?text=Ingatlan+7">
+                    <h3>Kecskemét, Belváros</h3>
+                </a>
+                <a href="#modal8" class="property-card" data-Hely="Szombathely" data-Ar="" data-Elhely="Kertváros" data-Tipus="" data-Szobak=""><img src="https://via.placeholder.com/300x180?text=Ingatlan+8">
+                    <h3>Szombathely, Kertváros</h3>
+                </a>
+                <a href="#modal9" class="property-card" data-Hely="Eger" data-Ar="" data-Elhely="Belváros" data-Tipus="" data-Szobak=""><img src="https://via.placeholder.com/300x180?text=Ingatlan+9">
+                    <h3>Eger, Belváros</h3>
+                </a>
+                <a href="#modal10" class="property-card" data-Hely="Zalaegerszeg" data-Ar="" data-Elhely="Centrum" data-Tipus="" data-Szobak=""><img
+                        src="https://via.placeholder.com/300x180?text=Ingatlan+10">
+                    <h3>Zalaegerszeg, Centrum</h3>
+                </a>
+                <a href="#modal11" class="property-card" data-Hely="Sopron" data-Ar="" data-Elhely="Külváros" data-Tipus="" data-Szobak=""><img
+                        src="https://via.placeholder.com/300x180?text=Ingatlan+11">
+                    <h3>Sopron, Külváros</h3>
+                </a>
+                <a href="#modal12" class="property-card" data-Hely="Nyíregyháza" data-Ar="" data-Elhely="Belváros" data-Tipus="" data-Szobak=""><img
+                        src="https://via.placeholder.com/300x180?text=Ingatlan+12">
+                    <h3>Nyíregyháza, Belváros</h3>
+                </a>
+                <a href="#modal13" class="property-card" data-Hely="Kaposvár" data-Ar="" data-Elhely="Kertváros" data-Tipus="" data-Szobak=""><img
+                        src="https://via.placeholder.com/300x180?text=Ingatlan+13">
+                    <h3>Kaposvár, Kertváros</h3>
+                </a>
+                <a href="#modal14" class="property-card" data-Hely="Salgótarján" data-Ar="" data-Elhely="Centrum" data-Tipus="" data-Szobak=""><img
+                        src="https://via.placeholder.com/300x180?text=Ingatlan+14">
+                    <h3>Salgótarján, Centrum</h3>
+                </a>
+                <a href="#modal15" class="property-card" data-Hely="Békéscsaba" data-Ar="" data-Elhely="Belváros" data-Tipus="" data-Szobak=""><img
+                        src="https://via.placeholder.com/300x180?text=Ingatlan+15">
+                    <h3>Békéscsaba, Belváros</h3>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals példaként az elsőre -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <a href="#" class="close">&times;</a>
+            <img src="https://via.placeholder.com/600x400?text=Ingatlan+1">
+            <h2>Budapest, Belváros - Modern lakás</h2>
+            <p>Ár: 45 000 000 Ft</p>
+            <p>Alapterület: 80 m²</p>
+            <p>Szobák: 3</p>
+            <p>Leírás: Központi fekvés, kiváló közlekedés.</p>
+        </div>
+    </div>
+
+        <div id="modal2" class="modal">
+        <div class="modal-content">
+            <a href="#" class="close">&times;</a>
+            <img src="https://via.placeholder.com/600x400?text=Ingatlan+1">
+            <h2>Budapest, Belváros - Modern lakás</h2>
+            <p>Ár: 45 000 000 Ft</p>
+            <p>Alapterület: 80 m²</p>
+            <p>Szobák: 3</p>
+            <p>Leírás: Központi fekvés, kiváló közlekedés.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Mi vagyunk az MRM Ingatlan. Segítünk eladni, venni, értékelni és tanácsot adni ingatlanügyekben.</p>
+    </footer>
+
+<script src="../js/Szuro.js"></script>
+</body>
+
+</html>
