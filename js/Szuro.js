@@ -4,6 +4,28 @@
     const arMax = document.getElementById('price-max');
     const Terulet = document.getElementById('Terulet');
 
+if(card.length > 0){
+    let TeruletMin = Infinity;
+    card.forEach(card => {
+        const cardTeruletMin = parseInt(card.dataset.Terulet);
+        if(cardTeruletMin < TeruletMin){
+            TeruletMin = cardTeruletMin;
+        }
+    });
+    Terulet.setAttribute('min', TeruletMin);
+}
+
+if(card.length > 0){
+    let TeruletMax = 0;
+    card.forEach(card => {
+        const cardTeruletMax = parseInt(card.dataset.Terulet);
+        if(cardTeruletMax > TeruletMax){
+            TeruletMax = cardTeruletMax;
+        }
+    });
+    Terulet.setAttribute('max', TeruletMax);
+}
+
 if (card.length > 0) {
         let lowPrice = Infinity;
         card.forEach(card => {
@@ -42,7 +64,11 @@ function MaxP() {
     maxPriceTextElement.textContent = arMaxInput.value + " Ft";
 }
 
-
+function TeruletT() {
+    const TeruletKiiras = document.getElementById('Terulet');
+    const TeruletText = document.getElementById('TeruletKI');
+    TeruletText.textContent = TeruletKiiras.value + " m²";
+}
 
     form.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -57,6 +83,7 @@ function MaxP() {
         const elhely = document.getElementById('localization').value;
         const tipus = document.getElementById('type').value;
         const szobak = document.getElementById('rooms').value;
+        const Teruleti = parseInt(Terulet_BE.value);
 
 
         card.forEach(card => {
@@ -65,6 +92,7 @@ function MaxP() {
             const cardElhely = card.dataset.elhely || "";
             const cardTipus = card.dataset.tipus || "";
             const cardSzobak = card.dataset.szobak || "";
+            const cardTerulet = card.dataset.Terulet || 0;
 
             let show = true;
 
@@ -91,6 +119,10 @@ function MaxP() {
             }
             
             if(szobak !== "Mindegy" && cardSzobak !== szobak){
+                show = false
+            }
+
+            if(cardTerulet < Teruleti || cardTerulet > Teruleti){
                 show = false
             }
 

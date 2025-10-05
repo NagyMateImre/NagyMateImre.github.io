@@ -202,6 +202,7 @@
             transition: transform 0.3s, box-shadow 0.3s;
             text-align: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-in-out forwards;
         }
 
         .property-card:hover {
@@ -308,6 +309,18 @@
         border: 1px solid #556B2F;
         background: #A4B939; 
         }
+
+                @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 
@@ -369,8 +382,8 @@
                     <input type="range" id="price-max" name="price-max" min="0" max="10" step="100000" oninput="MaxP()">
                 </div>
                 <div class="filter-group">
-                    <label for="price-max">Ár maximum:<span id="maxPriceTEXT">?</span></label>
-                    <input type="range" id="price-max" name="price-max" min="0" max="10" step="100000" oninput="MaxP()">
+                    <label for="Terulet">Terulet:<span id="TeruletKI">?</span></label>
+                    <input type="range" id="Terulet" name="Terulet" min="1" max="10" step="1" oninput="TeruletT()">
                 </div>
                 <div class="filter-group">
                     <label for="localization">Elhelyezkedés:</label>
@@ -414,54 +427,54 @@
             <h1>Eladó Ingatlanok</h1>
             <div class="property-grid">
                 <!-- 15 Ingatlan kártya -->
-                <a href="#modal1" class="property-card" data-Hely="Budapest" data-Ar="45000000" data-Elhely="Belváros" data-Tipus="Lakás" data-Szobak="3"><img src="https://via.placeholder.com/300x180?text=Ingatlan+1">
+                <a href="#modal1" class="property-card" data-Hely="Budapest" data-Ar="45000000" data-Elhely="Belváros" data-Tipus="Lakás" data-Szobak="3" data-Terulet="20"><img src="https://via.placeholder.com/300x180?text=Ingatlan+1">
                     <h3>Budapest, Belváros</h3>
                 </a>
-                <a href="#modal2" class="property-card" data-Hely="Szeged" data-Ar="22000000" data-Elhely="Kertváros" data-Tipus="" data-Szobak="5"><img src="https://via.placeholder.com/300x180?text=Ingatlan+2">
+                <a href="#modal2" class="property-card" data-Hely="Szeged" data-Ar="22000000" data-Elhely="Kertváros" data-Tipus="Ház" data-Szobak="5" data-Terulet="100"><img src="https://via.placeholder.com/300x180?text=Ingatlan+2">
                     <h3>Szeged, Kertváros</h3>
                 </a>
-                <a href="#modal3" class="property-card" data-Hely="Debrecen" data-Ar="10000000" data-Elhely="Centrum" data-Tipus="" data-Szobak=""><img src="https://via.placeholder.com/300x180?text=Ingatlan+3">
+                <a href="#modal3" class="property-card" data-Hely="Debrecen" data-Ar="10000000" data-Elhely="Centrum" data-Tipus="" data-Szobak="" data-Terulet="50"><img src="https://via.placeholder.com/300x180?text=Ingatlan+3">
                     <h3>Debrecen, Centrum</h3>
                 </a>
-                <a href="#modal4" class="property-card" data-Hely="Pécs" data-Ar="75500000" data-Elhely="Belváros" data-Tipus="" data-Szobak=""><img src="https://via.placeholder.com/300x180?text=Ingatlan+4">
+                <a href="#modal4" class="property-card" data-Hely="Pécs" data-Ar="75500000" data-Elhely="Belváros" data-Tipus="" data-Szobak=""data-Terulet="5"><img src="https://via.placeholder.com/300x180?text=Ingatlan+4">
                     <h3>Pécs, Belváros</h3>
                 </a>
-                <a href="#modal5" class="property-card" data-Hely="Győr" data-Ar="" data-Elhely="Külváros" data-Tipus="" data-Szobak=""><img src="https://via.placeholder.com/300x180?text=Ingatlan+5">
+                <a href="#modal5" class="property-card" data-Hely="Győr" data-Ar="10000000" data-Elhely="Külváros" data-Tipus="" data-Szobak=""data-Terulet=""><img src="https://via.placeholder.com/300x180?text=Ingatlan+5">
                     <h3>Győr, Külváros</h3>
                 </a>
-                <a href="#modal6" class="property-card" data-Hely="Miskolc" data-Ar="" data-Elhely="Centrum" data-Tipus="" data-Szobak=""><img src="https://via.placeholder.com/300x180?text=Ingatlan+6">
+                <a href="#modal6" class="property-card" data-Hely="Miskolc" data-Ar="10000000" data-Elhely="Centrum" data-Tipus="" data-Szobak=""data-Terulet=""><img src="https://via.placeholder.com/300x180?text=Ingatlan+6">
                     <h3>Miskolc, Centrum</h3>
                 </a>
-                <a href="#modal7" class="property-card" data-Hely="Kecskemét" data-Ar="" data-Elhely="Belváros" data-Tipus="" data-Szobak=""><img src="https://via.placeholder.com/300x180?text=Ingatlan+7">
+                <a href="#modal7" class="property-card" data-Hely="Kecskemét" data-Ar="10000000" data-Elhely="Belváros" data-Tipus="" data-Szobak=""data-Terulet=""><img src="https://via.placeholder.com/300x180?text=Ingatlan+7">
                     <h3>Kecskemét, Belváros</h3>
                 </a>
-                <a href="#modal8" class="property-card" data-Hely="Szombathely" data-Ar="" data-Elhely="Kertváros" data-Tipus="" data-Szobak=""><img src="https://via.placeholder.com/300x180?text=Ingatlan+8">
+                <a href="#modal8" class="property-card" data-Hely="Szombathely" data-Ar="10000000" data-Elhely="Kertváros" data-Tipus="" data-Szobak=""data-Terulet=""><img src="https://via.placeholder.com/300x180?text=Ingatlan+8">
                     <h3>Szombathely, Kertváros</h3>
                 </a>
-                <a href="#modal9" class="property-card" data-Hely="Eger" data-Ar="" data-Elhely="Belváros" data-Tipus="" data-Szobak=""><img src="https://via.placeholder.com/300x180?text=Ingatlan+9">
+                <a href="#modal9" class="property-card" data-Hely="Eger" data-Ar="10000000" data-Elhely="Belváros" data-Tipus="" data-Szobak=""data-Terulet=""><img src="https://via.placeholder.com/300x180?text=Ingatlan+9">
                     <h3>Eger, Belváros</h3>
                 </a>
-                <a href="#modal10" class="property-card" data-Hely="Zalaegerszeg" data-Ar="" data-Elhely="Centrum" data-Tipus="" data-Szobak=""><img
+                <a href="#modal10" class="property-card" data-Hely="Zalaegerszeg" data-Ar="10000000" data-Elhely="Centrum" data-Tipus="" data-Szobak=""data-Terulet=""><img
                         src="https://via.placeholder.com/300x180?text=Ingatlan+10">
                     <h3>Zalaegerszeg, Centrum</h3>
                 </a>
-                <a href="#modal11" class="property-card" data-Hely="Sopron" data-Ar="" data-Elhely="Külváros" data-Tipus="" data-Szobak=""><img
+                <a href="#modal11" class="property-card" data-Hely="Sopron" data-Ar="10000000" data-Elhely="Külváros" data-Tipus="" data-Szobak="" data-Terulet=""><img
                         src="https://via.placeholder.com/300x180?text=Ingatlan+11">
                     <h3>Sopron, Külváros</h3>
                 </a>
-                <a href="#modal12" class="property-card" data-Hely="Nyíregyháza" data-Ar="" data-Elhely="Belváros" data-Tipus="" data-Szobak=""><img
+                <a href="#modal12" class="property-card" data-Hely="Nyíregyháza" data-Ar="10000000" data-Elhely="Belváros" data-Tipus="" data-Szobak="" data-Terulet=""><img
                         src="https://via.placeholder.com/300x180?text=Ingatlan+12">
                     <h3>Nyíregyháza, Belváros</h3>
                 </a>
-                <a href="#modal13" class="property-card" data-Hely="Kaposvár" data-Ar="" data-Elhely="Kertváros" data-Tipus="" data-Szobak=""><img
+                <a href="#modal13" class="property-card" data-Hely="Kaposvár" data-Ar="10000000" data-Elhely="Kertváros" data-Tipus="" data-Szobak="" data-Terulet=""><img
                         src="https://via.placeholder.com/300x180?text=Ingatlan+13">
                     <h3>Kaposvár, Kertváros</h3>
                 </a>
-                <a href="#modal14" class="property-card" data-Hely="Salgótarján" data-Ar="" data-Elhely="Centrum" data-Tipus="" data-Szobak=""><img
+                <a href="#modal14" class="property-card" data-Hely="Salgótarján" data-Ar="10000000" data-Elhely="Centrum" data-Tipus="" data-Szobak="" data-Terulet=""><img
                         src="https://via.placeholder.com/300x180?text=Ingatlan+14">
                     <h3>Salgótarján, Centrum</h3>
                 </a>
-                <a href="#modal15" class="property-card" data-Hely="Békéscsaba" data-Ar="" data-Elhely="Belváros" data-Tipus="" data-Szobak=""><img
+                <a href="#modal15" class="property-card" data-Hely="Békéscsaba" data-Ar="10000000" data-Elhely="Belváros" data-Tipus="" data-Szobak="" data-Terulet=""><img
                         src="https://via.placeholder.com/300x180?text=Ingatlan+15">
                     <h3>Békéscsaba, Belváros</h3>
                 </a>
@@ -482,11 +495,167 @@
         </div>
     </div>
 
-        <div id="modal2" class="modal">
+    <div id="modal2" class="modal">
         <div class="modal-content">
             <a href="#" class="close">&times;</a>
             <img src="https://via.placeholder.com/600x400?text=Ingatlan+1">
-            <h2>Budapest, Belváros - Modern lakás</h2>
+            <h2>Szeged, Kertváros - Újépítésű Ház</h2>
+            <p>Ár: 22 000 000 Ft</p>
+            <p>Alapterület: 145 m²</p>
+            <p>Szobák: 5</p>
+            <p>Leírás: Kiválló fekvésű ingatlan, nagyszerű szonszédság.</p>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <a href="#" class="close">&times;</a>
+            <img src="https://via.placeholder.com/600x400?text=Ingatlan+1">
+            <h2>Debrecen, Centrum - Modern lakás</h2>
+            <p>Ár: 10 000 000 Ft</p>
+            <p>Alapterület: 80 m²</p>
+            <p>Szobák: 3</p>
+            <p>Leírás: Központi fekvés, kiváló közlekedés.</p>
+        </div>
+    </div>
+
+    <div id="modal4" class="modal">
+        <div class="modal-content">
+            <a href="#" class="close">&times;</a>
+            <img src="https://via.placeholder.com/600x400?text=Ingatlan+1">
+            <h2>Pécs, Belváros - Modern lakás</h2>
+            <p>Ár: 45 000 000 Ft</p>
+            <p>Alapterület: 80 m²</p>
+            <p>Szobák: 3</p>
+            <p>Leírás: Központi fekvés, kiváló közlekedés.</p>
+        </div>
+    </div>
+
+    <div id="modal5" class="modal">
+        <div class="modal-content">
+            <a href="#" class="close">&times;</a>
+            <img src="https://via.placeholder.com/600x400?text=Ingatlan+1">
+            <h2>Győr, Külváros - Modern lakás</h2>
+            <p>Ár: 45 000 000 Ft</p>
+            <p>Alapterület: 80 m²</p>
+            <p>Szobák: 3</p>
+            <p>Leírás: Központi fekvés, kiváló közlekedés.</p>
+        </div>
+    </div>
+
+        <div id="modal6" class="modal">
+        <div class="modal-content">
+            <a href="#" class="close">&times;</a>
+            <img src="https://via.placeholder.com/600x400?text=Ingatlan+1">
+            <h2>Miskolc, Centrum - Modern lakás</h2>
+            <p>Ár: 45 000 000 Ft</p>
+            <p>Alapterület: 80 m²</p>
+            <p>Szobák: 3</p>
+            <p>Leírás: Központi fekvés, kiváló közlekedés.</p>
+        </div>
+    </div>
+
+    <div id="modal7" class="modal">
+        <div class="modal-content">
+            <a href="#" class="close">&times;</a>
+            <img src="https://via.placeholder.com/600x400?text=Ingatlan+1">
+            <h2>Kecskemét, Belváros - Modern lakás</h2>
+            <p>Ár: 45 000 000 Ft</p>
+            <p>Alapterület: 80 m²</p>
+            <p>Szobák: 3</p>
+            <p>Leírás: Központi fekvés, kiváló közlekedés.</p>
+        </div>
+    </div>
+
+    <div id="modal8" class="modal">
+        <div class="modal-content">
+            <a href="#" class="close">&times;</a>
+            <img src="https://via.placeholder.com/600x400?text=Ingatlan+1">
+            <h2>Szombathely, Kertváros - Modern lakás</h2>
+            <p>Ár: 45 000 000 Ft</p>
+            <p>Alapterület: 80 m²</p>
+            <p>Szobák: 3</p>
+            <p>Leírás: Központi fekvés, kiváló közlekedés.</p>
+        </div>
+    </div>
+
+    <div id="modal9" class="modal">
+        <div class="modal-content">
+            <a href="#" class="close">&times;</a>
+            <img src="https://via.placeholder.com/600x400?text=Ingatlan+1">
+            <h2>Eger, Belváros - Modern lakás</h2>
+            <p>Ár: 45 000 000 Ft</p>
+            <p>Alapterület: 80 m²</p>
+            <p>Szobák: 3</p>
+            <p>Leírás: Központi fekvés, kiváló közlekedés.</p>
+        </div>
+    </div>
+
+    <div id="modal10" class="modal">
+        <div class="modal-content">
+            <a href="#" class="close">&times;</a>
+            <img src="https://via.placeholder.com/600x400?text=Ingatlan+1">
+            <h2>Zalaegerszeg, Centrum - Modern lakás</h2>
+            <p>Ár: 45 000 000 Ft</p>
+            <p>Alapterület: 80 m²</p>
+            <p>Szobák: 3</p>
+            <p>Leírás: Központi fekvés, kiváló közlekedés.</p>
+        </div>
+    </div>
+
+        <div id="modal11" class="modal">
+        <div class="modal-content">
+            <a href="#" class="close">&times;</a>
+            <img src="https://via.placeholder.com/600x400?text=Ingatlan+1">
+            <h2>Sopron, Külváros - Modern lakás</h2>
+            <p>Ár: 45 000 000 Ft</p>
+            <p>Alapterület: 80 m²</p>
+            <p>Szobák: 3</p>
+            <p>Leírás: Központi fekvés, kiváló közlekedés.</p>
+        </div>
+    </div>
+
+    <div id="modal12" class="modal">
+        <div class="modal-content">
+            <a href="#" class="close">&times;</a>
+            <img src="https://via.placeholder.com/600x400?text=Ingatlan+1">
+            <h2>Nyíregyháza, Belváros - Modern lakás</h2>
+            <p>Ár: 45 000 000 Ft</p>
+            <p>Alapterület: 80 m²</p>
+            <p>Szobák: 3</p>
+            <p>Leírás: Központi fekvés, kiváló közlekedés.</p>
+        </div>
+    </div>
+
+    <div id="modal13" class="modal">
+        <div class="modal-content">
+            <a href="#" class="close">&times;</a>
+            <img src="https://via.placeholder.com/600x400?text=Ingatlan+1">
+            <h2>Kaposvár, Kertváros - Modern lakás</h2>
+            <p>Ár: 45 000 000 Ft</p>
+            <p>Alapterület: 80 m²</p>
+            <p>Szobák: 3</p>
+            <p>Leírás: Központi fekvés, kiváló közlekedés.</p>
+        </div>
+    </div>
+
+    <div id="modal14" class="modal">
+        <div class="modal-content">
+            <a href="#" class="close">&times;</a>
+            <img src="https://via.placeholder.com/600x400?text=Ingatlan+1">
+            <h2>Salgótarján, Centrum - Modern lakás</h2>
+            <p>Ár: 45 000 000 Ft</p>
+            <p>Alapterület: 80 m²</p>
+            <p>Szobák: 3</p>
+            <p>Leírás: Központi fekvés, kiváló közlekedés.</p>
+        </div>
+    </div>
+
+    <div id="modal15" class="modal">
+        <div class="modal-content">
+            <a href="#" class="close">&times;</a>
+            <img src="https://via.placeholder.com/600x400?text=Ingatlan+1">
+            <h2>Békéscsaba, Belváros - Modern lakás</h2>
             <p>Ár: 45 000 000 Ft</p>
             <p>Alapterület: 80 m²</p>
             <p>Szobák: 3</p>
@@ -500,6 +669,5 @@
 
 <script src="../js/Szuro.js"></script>
 </body>
-
 
 </html>
