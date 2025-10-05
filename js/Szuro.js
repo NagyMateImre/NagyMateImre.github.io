@@ -7,7 +7,7 @@
 if(card.length > 0){
     let TeruletMin = Infinity;
     card.forEach(card => {
-        const cardTeruletMin = parseInt(card.dataset.Terulet);
+        const cardTeruletMin = parseInt(card.dataset.terulet);
         if(cardTeruletMin < TeruletMin){
             TeruletMin = cardTeruletMin;
         }
@@ -18,7 +18,7 @@ if(card.length > 0){
 if(card.length > 0){
     let TeruletMax = 0;
     card.forEach(card => {
-        const cardTeruletMax = parseInt(card.dataset.Terulet);
+        const cardTeruletMax = parseInt(card.dataset.terulet);
         if(cardTeruletMax > TeruletMax){
             TeruletMax = cardTeruletMax;
         }
@@ -55,7 +55,7 @@ if (card.length > 0) {
 function MinP() {
     const arMinInput = document.getElementById('price-min');
     const minPriceTextElement = document.getElementById('minPriceTEXT');
-    minPriceTextElement.textContent = arMinInput.value + " Ft";
+    minPriceTextElement.textContent = arMinInput.value + " Ft"; 
 }
 
 function MaxP() {
@@ -83,7 +83,7 @@ function TeruletT() {
         const elhely = document.getElementById('localization').value;
         const tipus = document.getElementById('type').value;
         const szobak = document.getElementById('rooms').value;
-        const Teruleti = parseInt(Terulet_BE.value);
+        const Teruleti = parseInt(Terulet.value);
 
 
         card.forEach(card => {
@@ -92,7 +92,7 @@ function TeruletT() {
             const cardElhely = card.dataset.elhely || "";
             const cardTipus = card.dataset.tipus || "";
             const cardSzobak = card.dataset.szobak || "";
-            const cardTerulet = card.dataset.Terulet || 0;
+            const cardTerulet = card.dataset.terulet || 0;
 
             let show = true;
 
@@ -122,7 +122,7 @@ function TeruletT() {
                 show = false
             }
 
-            if(cardTerulet < Teruleti || cardTerulet > Teruleti){
+            if(cardTerulet < Teruleti - 15 || cardTerulet > Teruleti + 15){
                 show = false
             }
 
@@ -137,5 +137,8 @@ function TeruletT() {
         form.reset();
         card.forEach(card => {
             card.style.display = 'block';
+            MinP();
+            MaxP();
+            TeruletT();
         });
     });
