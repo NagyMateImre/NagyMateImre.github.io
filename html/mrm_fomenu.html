@@ -301,6 +301,28 @@
         border: 1px solid #556B2F;
         background: #A4B939; 
         }
+
+        footer{
+            columns: 2;
+        }
+
+        footer>h3{
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            text-align: center;
+        }
+
+        .Description>li>a{
+            text-decoration: none;
+            color: #A4B939;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .Description{
+            color: #8FA31E;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
     </style>
 </head>
 
@@ -310,6 +332,9 @@
     <header>
         <div class="logo">
             <img src="../img/MRM_Logo.png" alt="MRM Logo" style="height: 100px;">
+        </div>
+        <div>
+            <h1 style="color:#8FA31E;">MRM ingatlan</h1>
         </div>
         <div class="contact-info">
             <p>Email: info@mrmingatlan.hu</p>
@@ -401,14 +426,30 @@
             </div>
         </section>
     </main>
-    <svg style="margin-top: -160px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <svg style="margin-top: -225px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path fill="#556B2F" fill-opacity="1" d="M0,96L24,122.7C48,149,96,203,144,186.7C192,171,240,85,288,80C336,75,384,149,432,176C480,203,528,181,576,165.3C624,149,672,139,720,149.3C768,160,816,192,864,176C912,160,960,96,1008,69.3C1056,43,1104,53,1152,85.3C1200,117,1248,171,1296,186.7C1344,203,1392,181,1416,170.7L1440,160L1440,320L1416,320C1392,320,1344,320,1296,320C1248,320,1200,320,1152,320C1104,320,1056,320,1008,320C960,320,912,320,864,320C816,320,768,320,720,320C672,320,624,320,576,320C528,320,480,320,432,320C384,320,336,320,288,320C240,320,192,320,144,320C96,320,48,320,24,320L0,320Z"></path>
     </svg>
     <!-- Footer / Mini bemutatkozás -->
     <footer>
-        <div class="FooterDiv1"></div>
-        <div class="FooterDiv2"></div>
-        <div class="FooterDiv3"></div>
+        <div class="media">
+            <div class="FooterDiv1">
+                <a href=""><img src="../img/InstagramLogo.png" alt="" width="120px"></a>
+            </div>
+            <div class="FooterDiv2">
+                <a href=""><img src="../img/FacebookLogo.png" alt="" width="130px"></a>
+            </div>
+        </div>
+        <h3>Mi vagyunk az MRM Ingatlan. Segítünk eladni, venni, értékelni és tanácsot adni ingatlanügyekben.</h3>
+        <div class="informations">
+            <ul style="list-style: none;" class="Description">
+                <h1>Rólunk</h1>
+                <li><a href="../html/mrm_ingatlanok.html">Ingatlanok</a></li>
+                <li><a href="../html/mrm_bemutat.html">Bemutatkozás</a></li>
+                <li><a href="../html/mrm_kapcsolat.html">Kapcsolat</a></li>
+                <li><a href="">Üzenet</a></li>
+                <li><a href="../html/mrm_adoilletek.html">Pénzügyi információk</a></li>
+            </ul>
+        </div>
     </footer>
 
 </body>
