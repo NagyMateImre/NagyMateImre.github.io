@@ -1,37 +1,73 @@
-// Várjuk meg, amíg a HTML oldal teljesen betöltődik
-document.addEventListener('DOMContentLoaded', () => {
-    // Az aszinkron fetch() hívás
-    fetch('http://localhost/adatok.php') // A XAMPP szerver címe és a PHP fájl neve
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Hálózati hiba történt');
-            }
-            return response.json();
-        })
-        .then(data => {
-            const tableBody = document.getElementById('adatok-body');
-            
-            if (data.length === 0) {
-                const row = document.createElement('tr');
-                row.innerHTML = `<td colspan="3" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">Nincs megjeleníthető adat.</td>`;
-                tableBody.appendChild(row);
-            } else {
-                data.forEach(item => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${item.ID}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${item.Vezeteknev}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${item.Keresztnev}</td>
-                    `;
-                    tableBody.appendChild(row);
-                });
-            }
-        })
-        .catch(error => {
-            console.error('Hiba az adatok lekérdezésekor:', error);
-            const tableBody = document.getElementById('adatok-body');
-            const row = document.createElement('tr');
-            row.innerHTML = `<td colspan="3" class="px-6 py-4 whitespace-nowrap text-sm text-red-500 text-center">Hiba történt az adatok betöltésekor. Kérlek, ellenőrizd a konzolt.</td>`;
-            tableBody.appendChild(row);
-        });
-});
+import mysql from 'mysql2/promise'; 
+
+const connectionOptions = {
+  user: 'root', 
+  host: 'localhost',      
+  database: 'mrm',        
+  password: '',
+  port: 3306,             
+};
+
+async function ingatlanok() {
+  let connection;
+  
+  try {
+    connection = await mysql.createConnection(connectionOptions);
+    console.log("✅ Sikeresen csatlakozva az 'mrm' adatbázishoz.");
+
+    const tablaNev = 'ingatlanok'; 
+    
+    const [sorok, mezoInfo] = await connection.execute(`SELECT * FROM ${tablaNev}`);
+    
+    console.log(`\n➡️ Eredmények a(z) '${tablaNev}' táblából (${sorok.length} sor):`);
+    
+    if (sorok.length > 0) {
+        console.log(sorok);
+    } else {
+        console.log("Nincsenek adatok a táblában.");
+    }
+    
+  } catch (err) {
+    console.error("\n❌ Hiba történt a csatlakozás vagy a lekérdezés során:");
+    console.error(err.message);
+    
+  } finally {
+    if (connection) {
+        await connection.end(); 
+        console.log("\n🛑 Kapcsolat lezárva.");
+    }
+  }
+}
+
+async function Ugynokok() {
+  let connection;
+  
+  try {
+    connection = await mysql.createConnection(connectionOptions);
+    console.log("✅ Sikeresen csatlakozva az 'mrm' adatbázishoz.");
+
+    const tablaNev = 'alkalmazott'; 
+    
+    const [sorok, mezoInfo] = await connection.execute(`SELECT * FROM ${tablaNev}`);
+    
+    console.log(`\n➡️ Eredmények a(z) '${tablaNev}' táblából (${sorok.length} sor):`);
+    
+    if (sorok.length > 0) {
+        console.log(sorok);
+    } else {
+        console.log("Nincsenek adatok a táblában.");
+    }
+    
+  } catch (err) {
+    console.error("\n❌ Hiba történt a csatlakozás vagy a lekérdezés során:");
+    console.error(err.message);
+    
+  } finally {
+    if (connection) {
+        await connection.end(); 
+        console.log("\n🛑 Kapcsolat lezárva.");
+    }
+  }
+}
+ingatlanok();
+Ugynokok();
