@@ -320,6 +320,9 @@
             cursor: pointer;
         }
 
+        b{
+            color: #A4B939;
+        }
     </style>
 </head>
 <body>
@@ -327,6 +330,9 @@
     <header>
         <div class="logo">
             <img src="../img/MRM_Logo.png" alt="MRM Logo" style="height: 100px;">
+        </div>
+        <div>
+            <h1 style="color:#8FA31E;"><b>M</b>indenre <b>R</b>endezett <b>M</b>egoldás</h1>
         </div>
         <div class="contact-info">
             <p>Email: info@mrmingatlan.hu</p>
@@ -383,23 +389,24 @@
             </div>
             <a href="mrm_ertekesitok.html">Ingatlanérékesitőink bővebben itt..</a>
             <h1>Üzenetküldés</h1>
+            <p>Az üzenet kizárólag a mezők kitöltése után küldhető be addig a gomb nem látható</p>
             <form action="">
                 <fieldset>
                     <legend>Üzenetküldés</legend>
                     <Label for="">Teljes Név</Label><br>
-                    <input type="text" placeholder="Az ön neve"><br>
+                    <input type="text" placeholder="Az ön neve" id="Name"><br>
 
                     <label for="">Email</label><br>
-                    <input type="email" placeholder="Az ön Email-e"><br>
+                    <input type="email" placeholder="Az ön Email-e" id="Email"><br>
 
                     <label for="">Tel</label><br>
-                    <input type="text" placeholder="Az ön Telefonszáma"><br>
+                    <input type="text" placeholder="Az ön Telefonszáma" id="Mobile"><br>
 
                     <label for="">Üzenet</label><br>
-                    <textarea name="" id="" rows="5" cols="50" placeholder="Üzenete/kérdése"></textarea><br>
+                    <textarea name="" rows="5" cols="50" placeholder="Üzenete/kérdése" id="Message"></textarea><br>
 
-                    <button type="submit">Küldés</button>
-                    <button type="submit">Törlés</button>
+                    <button type="submit" id="SubmitButton">Küldés</button>
+                    <button type="button" id="ClearButton">Törlés</button>
                 </fieldset>
             </form>
         </div>
@@ -409,4 +416,5 @@
         <p>Mi vagyunk az MRM Ingatlan. Segítünk eladni, venni, értékelni és tanácsot adni ingatlanügyekben.</p>
     </footer>
 </body>
+<script src="../js/Message.js"></script>
 </html>
