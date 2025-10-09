@@ -54,4 +54,5 @@ ClearB.addEventListener('click', (item) =>{
     Email.value = "";
     Mobile.value = "";
     Message.value = "";
+    SubmitB.style.display = "none"
 })
