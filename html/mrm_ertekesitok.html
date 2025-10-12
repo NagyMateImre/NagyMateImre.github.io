@@ -128,7 +128,7 @@
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
             /* nagyobb kártyák az olvashatóság érdekében */
             gap: 25px;
         }
@@ -213,6 +213,14 @@
             .team-card .description {
                 font-size: 13px;
                 max-height: 150px;
+            }
+        }
+
+        @media only screen and (min-width: 768px) {
+            .team-grid{
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
             }
         }
     </style>
