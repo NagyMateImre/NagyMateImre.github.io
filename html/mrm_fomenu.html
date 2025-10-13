@@ -158,16 +158,54 @@
             text-align: center;
         }
 
+        .Description{
+            color: #8FA31E;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            float: left;
+        }
+
         .Description>li>a{
             text-decoration: none;
             color: #A4B939;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
+            transition: all ease-in-out 0.3s;
         }
 
-        .Description{
-            color: #8FA31E;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+         .Description>li>a:hover{
+            color: white;
+            font-weight: bold;
+            font-size: larger;
+            position: sticky;
+            text-shadow: 2px 3px #A4B939;
+         }
+
+         @keyframes Forgas {
+            0%{
+                transform: rotate(0deg);
+            }
+            25%{
+                transform: rotate(60deg);    
+            }
+
+            50%{
+                transform: rotate(180deg);
+            }
+
+            75%{
+                transform: rotate(60deg);
+            }
+
+            100%{
+                transform: rotate(0deg);
+            }
         }
+        #FacebookLogo{
+            padding:0px ;
+        }
+
+         #FacebookLogo:hover, #InstagramLogo:hover{
+            animation: Forgas ease 1s;
+         }
     </style>
 </head>
 
@@ -276,24 +314,27 @@
     </svg>
     <!-- Footer / Mini bemutatkozás -->
     <footer>
+        <h3>Mi vagyunk az MRM Ingatlan. Segítünk eladni, venni, értékelni és tanácsot adni ingatlanügyekben.</h3>
         <div class="media">
             <div class="FooterDiv1">
-                <a href=""><img src="../img/InstagramLogo.png" alt="" width="120px"></a>
+                <a href=""><img id="InstagramLogo" src="../img/InstagramLogo.png" alt="" width="120px"></a>
             </div>
             <div class="FooterDiv2">
-                <a href=""><img src="../img/FacebookLogo.png" alt="" width="130px"></a>
+                <a href=""><img id="FacebookLogo" src="../img/FacebookLogo.png" alt="" width="130px"></a>
             </div>
         </div>
-        <h3>Mi vagyunk az MRM Ingatlan. Segítünk eladni, venni, értékelni és tanácsot adni ingatlanügyekben.</h3>
         <div class="informations">
             <ul style="list-style: none;" class="Description">
                 <h1>Rólunk</h1>
                 <li><a href="../html/mrm_ingatlanok.html">Ingatlanok</a></li>
                 <li><a href="../html/mrm_bemutat.html">Bemutatkozás</a></li>
                 <li><a href="../html/mrm_kapcsolat.html">Kapcsolat</a></li>
-                <li><a href="">Üzenet</a></li>
-                <li><a href="../html/mrm_adoilletek.html">Pénzügyi információk</a></li>
+                <li><a href="../html/mrm_kapcsolat.html#Name">Üzenet</a></li>
+                <li><a href="../html/mrm_adoilletek.html">Pénzügy</a></li>
             </ul>
+        </div>
+        <div id="Map_Fomenu">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d102755.00627210893!2d20.663539632926017!3d48.07017904143665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47409fe48c01588b%3A0xdc6303e601794631!2sMiskolci%20SZC%20Kand%C3%B3%20K%C3%A1lm%C3%A1n%20Informatikai%20Technikum!5e1!3m2!1shu!2shu!4v1758740664391!5m2!1shu!2shu" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </footer>
 
