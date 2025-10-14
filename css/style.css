@@ -27,7 +27,7 @@ header {
  display: flex;
  justify-content: space-between;
  align-items: center;
- z-index: 1000;
+ z-index: 10001;
  height: 60px;
 }
 
@@ -64,7 +64,7 @@ nav {
     background-color: #8FA31E;
     color: #EFF5D2;
     padding: 10px 0;
-    z-index: 999;
+    z-index: 10001;
 }
 
 

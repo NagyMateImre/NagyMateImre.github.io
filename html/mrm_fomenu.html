@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">    
+    <link rel="stylesheet" href="../css/responsive.css">
     <link rel="icon" type="image/png" href="../img/MRM_Logo.png">
     <title>MRM Ingatlan</title>
     <style>
@@ -176,23 +177,47 @@
             font-weight: bold;
             font-size: larger;
             position: sticky;
-            text-shadow: 2px 3px #A4B939;
+            text-shadow: 1px 1px #A4B939;
          }
 
          @keyframes Forgas {
             0%{
                 transform: rotate(0deg);
             }
-            25%{
-                transform: rotate(60deg);    
+            10%{
+                transform: rotate(45deg);    
+            }
+
+            20%{
+                transform: rotate(90deg);    
+            }
+
+            30%{
+                transform: rotate(120deg);    
+            }
+
+            40%{
+                transform: rotate(160deg);    
             }
 
             50%{
                 transform: rotate(180deg);
             }
 
-            75%{
-                transform: rotate(60deg);
+            60%{
+                transform: rotate(160deg);
+            }
+
+            70%{
+                transform: rotate(120deg);    
+            }
+
+            80%{
+                transform: rotate(90deg);    
+            }
+            
+            90%{
+                transform: rotate(45deg);    
             }
 
             100%{
@@ -204,7 +229,7 @@
         }
 
          #FacebookLogo:hover, #InstagramLogo:hover{
-            animation: Forgas ease 1s;
+            animation: Forgas ease-in-out 0.65s;
          }
     </style>
 </head>
@@ -216,7 +241,7 @@
         <div class="logo">
             <img src="../img/MRM_Logo.png" alt="MRM Logo" style="height: 100px;">
         </div>
-        <div>
+        <div class="MRM">
             <h1 style="color:#8FA31E;"><b>M</b>indenre <b>R</b>endezett <b>M</b>egoldás</h1>
         </div>
         <div class="contact-info">
@@ -317,7 +342,7 @@
         <h3>Mi vagyunk az MRM Ingatlan. Segítünk eladni, venni, értékelni és tanácsot adni ingatlanügyekben.</h3>
         <div class="media">
             <div class="FooterDiv1">
-                <a href=""><img id="InstagramLogo" src="../img/InstagramLogo.png" alt="" width="120px"></a>
+                <a href="https://www.instagram.com/miskolc_putri/"><img id="InstagramLogo" src="../img/InstagramLogo.png" alt="" width="120px"></a>
             </div>
             <div class="FooterDiv2">
                 <a href=""><img id="FacebookLogo" src="../img/FacebookLogo.png" alt="" width="130px"></a>
