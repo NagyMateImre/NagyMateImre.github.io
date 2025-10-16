@@ -1,5 +1,6 @@
 const form = document.querySelector('.filter-sidebar form');
 const card = document.querySelectorAll('.property-card');
+localStorage.setItem("Card",card);
 const arMin = document.getElementById('price-min');
 const arMax = document.getElementById('price-max');
 const Terulet = document.getElementById('Terulet');
@@ -146,3 +147,4 @@ clearBtn.addEventListener('click', (e) => {
         TeruletT();
     });
 });
+
